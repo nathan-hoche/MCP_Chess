@@ -1,7 +1,7 @@
 from fastmcp import FastMCP
 import chess
 
-mcp = FastMCP("Chess MCP")
+mcp = FastMCP("Chess MCP ♟️")
 
 BOARD = chess.Board()
 
@@ -30,6 +30,23 @@ def get_legal_moves() -> str:
     if not legal_moves:
         return "There are no legal moves available."
     return f"Legal moves: {', '.join(legal_moves)}"
+
+def check_game_status() -> str:
+    """Check the current game status."""
+    if BOARD.is_checkmate():
+        return "Checkmate! The game is over."
+    elif BOARD.is_stalemate():
+        return "Stalemate! The game is drawn."
+    elif BOARD.is_insufficient_material():
+        return "Insufficient material! The game is drawn."
+    elif BOARD.is_seventyfive_moves():
+        return "Seventy-five moves rule! The game is drawn."
+    elif BOARD.is_fivefold_repetition():
+        return "Fivefold repetition! The game is drawn."
+    elif BOARD.is_check():
+        return "Check! The king is in check."
+    else:
+        return "The game is ongoing."
 
 @mcp.tool
 def reset_board() -> str:
