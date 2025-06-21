@@ -8,7 +8,7 @@ BOARD = chess.Board()
 @mcp.tool
 def get_board(fen_format:bool=False) -> str:
     """Get the current state of the chess board."""
-    return BOARD.fen() if fen_format else BOARD
+    return BOARD.fen() if fen_format else str(BOARD)
 
 @mcp.tool
 def make_move(san_move: str) -> str:
@@ -31,6 +31,7 @@ def get_legal_moves() -> str:
         return "There are no legal moves available."
     return f"Legal moves: {', '.join(legal_moves)}"
 
+@mcp.tool
 def check_game_status() -> str:
     """Check the current game status."""
     if BOARD.is_checkmate():
