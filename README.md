@@ -4,7 +4,7 @@
 
 This project is a simple MCP to enable an LLM to play chess. It uses the `python-chess` library to handle the chess logic and a simple text-based interface for interaction.
 
-> ![Note]
+> [!NOTE]
 > The board is handle by the MCP, so the user need to interact with the chess game using an MCP client.
 
 # Usage
@@ -21,7 +21,7 @@ Then, you can run the MCP server using:
 python mcp_chess.py
 ```
 
-> ![Note]
+> [!NOTE]
 > The MCP server use the `Streamable-http` for the communication, this can be changed in the `main.py` file.
 
 # List of tools
