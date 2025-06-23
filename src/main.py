@@ -1,17 +1,19 @@
 from fastmcp import FastMCP
+from typing import Annotated
+from pydantic import Field
 import chess
 
 mcp = FastMCP("Chess MCP ♟️")
 
 BOARD = chess.Board()
 
-@mcp.tool
-def get_board(fen_format:bool=False) -> str:
+@mcp.tool(description="Get the current state of the chess board.")
+def get_board(fen_format:Annotated[bool, Field(description="If True return the board in the fen format (default: False)")]=False) -> str:
     """Get the current state of the chess board."""
     return BOARD.fen() if fen_format else str(BOARD)
 
-@mcp.tool
-def make_move(san_move: str) -> str:
+@mcp.tool(description="Make a move on the chess board using standard algebraic notation.")
+def make_move(san_move: Annotated[str, Field(description="Move to make in the SAN format")]) -> str:
     """Make a move on the chess board using standard algebraic notation."""
     try:
         BOARD.push_san(san_move)
@@ -23,7 +25,7 @@ def make_move(san_move: str) -> str:
         return f"{san_move} is an ambiguous move; please provide a disambiguated move in standard algebraic notation."
     return f"Move {san_move} has been made. Current board state: {BOARD.fen()}"
 
-@mcp.tool
+@mcp.tool(description="Get all legal moves from the current position.")
 def get_legal_moves() -> str:
     """Get all legal moves from the current position."""
     legal_moves = [move.uci() for move in BOARD.legal_moves]
@@ -31,7 +33,7 @@ def get_legal_moves() -> str:
         return "There are no legal moves available."
     return f"Legal moves: {', '.join(legal_moves)}"
 
-@mcp.tool
+@mcp.tool(description="Check the current game status.")
 def check_game_status() -> str:
     """Check the current game status."""
     if BOARD.is_checkmate():
@@ -49,7 +51,7 @@ def check_game_status() -> str:
     else:
         return "The game is ongoing."
 
-@mcp.tool
+@mcp.tool(description="Reset the chess board to the starting position.")
 def reset_board() -> str:
     """Reset the chess board to the starting position."""
     global BOARD
