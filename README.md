@@ -25,7 +25,7 @@ python src/main.py
 > The MCP server use the `Streamable-http` for the communication, this can be changed in the `main.py` file.
 
 >[!NOTE]
-> You can check my repository [LLM Chess Game](https://github.com/nathan-hoche/LLM_Chess_Game), to see how to use this MCP with a language model (LLM) to play chess.
+> You can check my repository [LLM Chess Player](https://github.com/nathan-hoche/LLM_Chess_Player), to see how to use this MCP with a language model (LLM) to play chess.
 
 # List of tools
 
