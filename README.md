@@ -18,7 +18,7 @@ pip install -r requirements.txt
 Then, you can run the MCP server using:
 
 ```bash
-python mcp_chess.py
+python src/main.py
 ```
 
 > [!NOTE]
